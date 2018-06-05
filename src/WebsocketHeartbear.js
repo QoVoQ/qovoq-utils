@@ -106,4 +106,9 @@ export class WebSocketHeartbeat {
   send(data) {
     this.ws.send(data)
   }
+
+  // close and reopen
+  refresh() {
+
+  }
 }

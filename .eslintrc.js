@@ -13,6 +13,7 @@ module.exports = {
     'plugin:jest/recommended'
   ],
   rules: {
-    'space-before-function-paren': [2, 'never']
+    'space-before-function-paren': [2, 'never'],
+    'no-debugger': 'off'
   }
 }
