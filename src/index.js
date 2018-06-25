@@ -5,7 +5,7 @@
  ** @author zhongxian_liang <zhongxian_liang@kingdee.com>
  ** @date 2018-01-25 11:37:46
  ** @last_modified_by zhongxian_liang <zhongxian_liang@kingdee.com>
- ** @last_modified_date 2018-06-01 15:24:27
+ ** @last_modified_date 2018-06-25 09:26:03
  ** @copyright (c) 2018 @yfe/kchain-demo
  ** ********************************************************
  */
@@ -125,4 +125,16 @@ export const shuffle = arr => {
   }
 
   return cp
+}
+
+export const getRandomDayMils = (day = 1) =>
+  Math.floor(Math.random() * 1000 * 60 * 60 * 24 * day)
+
+export const smartMerge = (target, other) => {
+  Object.keys(target).forEach(key => {
+    if (other[key] !== undefined) {
+      target[key] = other[key]
+    }
+  })
+  return target
 }

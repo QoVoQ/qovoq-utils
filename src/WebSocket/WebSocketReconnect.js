@@ -7,6 +7,8 @@ import EventEmitter from '../EventEmitter.js'
  * or it gets disconnected, it will repeatedly poll until it successfully connects
  * again.
  *
+ * @TODO Add heartbeat(should reconnect when heartbeat response timeout)
+ *
  * It is API compatible, so when you have:
  *   ws = new WebSocket('ws://....');
  * you can replace with:
