@@ -2,7 +2,9 @@
   "name": "qovoq-utils",
   "version": "0.0.1",
   "description": "A mini tool lib for solving all kinds of trivial problems.",
-  "main": "index.js",
+  "main": "dist/qovoq-utils.umd.js",
+  "module": "dist/qovoq-utils.esm.js",
+  "unpkg": "dist/qovoq-utils.umd.js",
   "scripts": {
     "dev:demo": "node server.js",
     "build": "rimraf dist && npm run build:browser && npm run build:es && npm run build:umd",

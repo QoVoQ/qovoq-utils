@@ -1,15 +1,3 @@
-
-/**
- ** ********************************************************
- ** @file index.js
- ** @author zhongxian_liang <zhongxian_liang@kingdee.com>
- ** @date 2018-01-25 11:37:46
- ** @last_modified_by zhongxian_liang <zhongxian_liang@kingdee.com>
- ** @last_modified_date 2018-06-25 09:26:03
- ** @copyright (c) 2018 @yfe/kchain-demo
- ** ********************************************************
- */
-
 // htmlEle id should start with letter not number
 export const fakeUID =
   () => `u${Math.floor((1 + Math.random()) * 0x100000000).toString(36)}`

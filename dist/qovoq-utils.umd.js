@@ -9,17 +9,6 @@
   (factory((global.QovoqUtils = {})));
 }(this, (function (exports) { 'use strict';
 
-  /**
-   ** ********************************************************
-   ** @file index.js
-   ** @author zhongxian_liang <zhongxian_liang@kingdee.com>
-   ** @date 2018-01-25 11:37:46
-   ** @last_modified_by zhongxian_liang <zhongxian_liang@kingdee.com>
-   ** @last_modified_date 2018-06-01 15:24:27
-   ** @copyright (c) 2018 @yfe/kchain-demo
-   ** ********************************************************
-   */
-
   // htmlEle id should start with letter not number
   var fakeUID =
     function () { return ("u" + (Math.floor((1 + Math.random()) * 0x100000000).toString(36))); };
@@ -137,6 +126,21 @@
     return cp
   };
 
+  var getRandomDayMils = function (day) {
+      if ( day === void 0 ) day = 1;
+
+      return Math.floor(Math.random() * 1000 * 60 * 60 * 24 * day);
+  };
+
+  var smartMerge = function (target, other) {
+    Object.keys(target).forEach(function (key) {
+      if (other[key] !== undefined) {
+        target[key] = other[key];
+      }
+    });
+    return target
+  };
+
   exports.fakeUID = fakeUID;
   exports.deepClone = deepClone;
   exports.appendGlobalStyle = appendGlobalStyle;
@@ -149,6 +153,8 @@
   exports.getBytesLen = getBytesLen;
   exports.getQueryParam = getQueryParam;
   exports.shuffle = shuffle;
+  exports.getRandomDayMils = getRandomDayMils;
+  exports.smartMerge = smartMerge;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
