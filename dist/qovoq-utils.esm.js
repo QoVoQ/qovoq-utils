@@ -1,36 +1,30 @@
 /**
- * qovoq-utils v0.0.1
+ * qovoq-utils v0.0.2
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
 // htmlEle id should start with letter not number
-var fakeUID =
-  function () { return ("u" + (Math.floor((1 + Math.random()) * 0x100000000).toString(36))); };
+var fakeUIDCounter = 0;
+var fakeUID = function () { return ("u" + (fakeUIDCounter++) + "_" + (Math.floor(
+    (1 + Math.random()) * 0x100000000
+  ).toString(36))); };
 
-var deepClone =
-  function (obj) {
-    try {
-      return JSON.parse(JSON.stringify(obj))
-    } catch (e) {
-      throw new Error('Fail to deep clone an object.')
-    }
-  };
+var deepClone = function (obj) {
+  try {
+    return JSON.parse(JSON.stringify(obj))
+  } catch (e) {
+    throw new Error('Fail to deep clone an object.')
+  }
+};
 
 var appendGlobalStyle = function (cssText) {
   var style = document.createElement('style');
   style.type = 'text/css';
   style.innerHTML = cssText;
-  document.getElementsByTagName('HEAD').item(0).appendChild(style);
-};
-
-// an unreliable method of removing duplicate value in an array
-// can not distinguish between 1<number> and '1'<string>
-var uniqArray = function (arr) {
-  var obj = arr.reduce(function (acc, item) {
-    acc[item] = true;
-    return acc
-  }, {});
-  return Object.keys(obj)
+  document
+    .getElementsByTagName('HEAD')
+    .item(0)
+    .appendChild(style);
 };
 
 // safely get deep path property like a.b.c[0]
@@ -47,44 +41,40 @@ var getDeepProperty = function (target, propStr) {
   return obj
 };
 
-var isEptVal =
-  function (value) { return value === null || value === '' || value === undefined; };
+var isEptVal = function (value) { return value === null || value === '' || value === undefined; };
 
-var removeEptVal = function (obj) { return Object.keys(obj).reduce(
-    function (acc, key) {
-      if (!isEptVal(obj[key])) { acc[key] = obj[key]; }
-      return acc
-    },
-    {}
-  ); };
+var removeEptVal = function (obj) { return Object.keys(obj).reduce(function (acc, key) {
+    if (!isEptVal(obj[key])) {
+      acc[key] = obj[key];
+    }
+    return acc
+  }, {}); };
 
 var hasProperty = function (obj, key) { return obj !== null && Object.prototype.hasOwnProperty.call(obj, key); };
 
 var normalizeNull = function (val) {
-  if (val === null || val === undefined) { return '' }
+  if (val === null || val === undefined) {
+    return ''
+  }
   return val
 };
 
 /**
  * @description: 求字符串长度，字母和标点长度算作1，其他（如汉字）算作2
- * @date 2017/7/10 17:38
- * @author zhongxian_liang
- * @return{*}
  * @param str
  */
 var getBytesLen = function (str) { return [].reduce.call(
-  str,
-  function (acc, item, idx) {
-    var charCode = str.charCodeAt(idx);
-    acc += (charCode >= 0 && charCode < 128) ? 1 : 2;
-    return acc
-  }, 0); };
+    str,
+    function (acc, item, idx) {
+      var charCode = str.charCodeAt(idx);
+      acc += charCode >= 0 && charCode < 128 ? 1 : 2;
+      return acc
+    },
+    0
+  ); };
 
 /**
  * @description: 获取url中的query参数
- * @date 2017/3/17 10:49
- * @author zhongxian_liang
- * @return{*}
  * @param name
  * @param url
  */
@@ -129,10 +119,12 @@ var getRandomDayMils = function (day) {
 var smartMerge = function (target, other) {
   Object.keys(target).forEach(function (key) {
     if (other[key] !== undefined) {
-      target[key] = other[key];
+      typeof other[key] === 'object'
+        ? smartMerge(target[key], other[key])
+        : (target[key] = other[key]);
     }
   });
   return target
 };
 
-export { fakeUID, deepClone, appendGlobalStyle, uniqArray, getDeepProperty, isEptVal, removeEptVal, hasProperty, normalizeNull, getBytesLen, getQueryParam, shuffle, getRandomDayMils, smartMerge };
+export { fakeUID, deepClone, appendGlobalStyle, getDeepProperty, isEptVal, removeEptVal, hasProperty, normalizeNull, getBytesLen, getQueryParam, shuffle, getRandomDayMils, smartMerge };

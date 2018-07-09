@@ -13,7 +13,7 @@
     "build:es": "rollup --config build/rollup.config.es.js",
     "build:umd": "rollup --config build/rollup.config.umd.js",
     "test": "jest && codecov -t $CODECOV_TOKEN",
-    "prepare1": "yarn build && yarn test"
+    "prepare": "yarn build && yarn test"
   },
   "repository": {
     "type": "git",
