@@ -1,10 +1,4 @@
 /**
- * @desc: retryRequest
- * @author: zhongxian_liang
- * @date: 12/20 16:18
- */
-
-/**
  * @description: retry for certain times when request fails
  * - error will be counted only when http error happens, 'errcode' like '500'/'408'
  * - business error will be considered as success request, 'errcode'(with length of 6, with an exception '401') like '500101'

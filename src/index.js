@@ -1,31 +1,26 @@
 // htmlEle id should start with letter not number
-export const fakeUID =
-  () => `u${Math.floor((1 + Math.random()) * 0x100000000).toString(36)}`
+let fakeUIDCounter = 0
+export const fakeUID = () =>
+  `u${fakeUIDCounter++}_${Math.floor(
+    (1 + Math.random()) * 0x100000000
+  ).toString(36)}`
 
-export const deepClone =
-  obj => {
-    try {
-      return JSON.parse(JSON.stringify(obj))
-    } catch (e) {
-      throw new Error('Fail to deep clone an object.')
-    }
+export const deepClone = obj => {
+  try {
+    return JSON.parse(JSON.stringify(obj))
+  } catch (e) {
+    throw new Error('Fail to deep clone an object.')
   }
+}
 
 export const appendGlobalStyle = cssText => {
   const style = document.createElement('style')
   style.type = 'text/css'
   style.innerHTML = cssText
-  document.getElementsByTagName('HEAD').item(0).appendChild(style)
-}
-
-// an unreliable method of removing duplicate value in an array
-// can not distinguish between 1<number> and '1'<string>
-export const uniqArray = arr => {
-  const obj = arr.reduce((acc, item) => {
-    acc[item] = true
-    return acc
-  }, {})
-  return Object.keys(obj)
+  document
+    .getElementsByTagName('HEAD')
+    .item(0)
+    .appendChild(style)
 }
 
 // safely get deep path property like a.b.c[0]
@@ -42,46 +37,44 @@ export const getDeepProperty = (target, propStr) => {
   return obj
 }
 
-export const isEptVal =
-  value => value === null || value === '' || value === undefined
+export const isEptVal = value =>
+  value === null || value === '' || value === undefined
 
 export const removeEptVal = obj =>
-  Object.keys(obj).reduce(
-    (acc, key) => {
-      if (!isEptVal(obj[key])) { acc[key] = obj[key] }
-      return acc
-    },
-    {}
-  )
+  Object.keys(obj).reduce((acc, key) => {
+    if (!isEptVal(obj[key])) {
+      acc[key] = obj[key]
+    }
+    return acc
+  }, {})
 
 export const hasProperty = (obj, key) =>
   obj !== null && Object.prototype.hasOwnProperty.call(obj, key)
 
 export const normalizeNull = val => {
-  if (val === null || val === undefined) { return '' }
+  if (val === null || val === undefined) {
+    return ''
+  }
   return val
 }
 
 /**
  * @description: 求字符串长度，字母和标点长度算作1，其他（如汉字）算作2
- * @date 2017/7/10 17:38
- * @author zhongxian_liang
- * @return{*}
  * @param str
  */
-export const getBytesLen = str => [].reduce.call(
-  str,
-  (acc, item, idx) => {
-    const charCode = str.charCodeAt(idx)
-    acc += (charCode >= 0 && charCode < 128) ? 1 : 2
-    return acc
-  }, 0)
+export const getBytesLen = str =>
+  [].reduce.call(
+    str,
+    (acc, item, idx) => {
+      const charCode = str.charCodeAt(idx)
+      acc += charCode >= 0 && charCode < 128 ? 1 : 2
+      return acc
+    },
+    0
+  )
 
 /**
  * @description: 获取url中的query参数
- * @date 2017/3/17 10:49
- * @author zhongxian_liang
- * @return{*}
  * @param name
  * @param url
  */
@@ -121,7 +114,9 @@ export const getRandomDayMils = (day = 1) =>
 export const smartMerge = (target, other) => {
   Object.keys(target).forEach(key => {
     if (other[key] !== undefined) {
-      target[key] = other[key]
+      typeof other[key] === 'object'
+        ? smartMerge(target[key], other[key])
+        : (target[key] = other[key])
     }
   })
   return target
