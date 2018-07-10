@@ -1,5 +1,10 @@
 // htmlEle id should start with letter not number
+import regex from './regex'
+
 let fakeUIDCounter = 0
+
+export const regExp = regex
+
 export const fakeUID = () =>
   `u${fakeUIDCounter++}_${Math.floor(
     (1 + Math.random()) * 0x100000000
