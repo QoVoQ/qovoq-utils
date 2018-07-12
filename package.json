@@ -1,6 +1,6 @@
 {
   "name": "qovoq-utils",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A mini tool lib for solving all kinds of trivial problems.",
   "main": "dist/qovoq-utils.umd.js",
   "module": "dist/qovoq-utils.esm.js",
