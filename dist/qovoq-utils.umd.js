@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.4
+ * qovoq-utils v0.0.5
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -144,6 +144,21 @@
     return target
   };
 
+  var index = {
+    regExp: regExp,
+    fakeUID: fakeUID,
+    appendGlobalStyle: appendGlobalStyle,
+    getDeepProperty: getDeepProperty,
+    isEptVal: isEptVal,
+    removeEptVal: removeEptVal,
+    hasProperty: hasProperty,
+    normalizeNull: normalizeNull,
+    getBytesLen: getBytesLen,
+    getRandomDayMils: getRandomDayMils,
+    getQueryParam: getQueryParam,
+    smartMerge: smartMerge
+  }
+
   exports.regExp = regExp;
   exports.fakeUID = fakeUID;
   exports.deepClone = deepClone;
@@ -158,6 +173,7 @@
   exports.shuffle = shuffle;
   exports.getRandomDayMils = getRandomDayMils;
   exports.smartMerge = smartMerge;
+  exports.default = index;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.4
+ * qovoq-utils v0.0.5
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -138,4 +138,20 @@ var smartMerge = function (target, other) {
   return target
 };
 
+var index = {
+  regExp: regExp,
+  fakeUID: fakeUID,
+  appendGlobalStyle: appendGlobalStyle,
+  getDeepProperty: getDeepProperty,
+  isEptVal: isEptVal,
+  removeEptVal: removeEptVal,
+  hasProperty: hasProperty,
+  normalizeNull: normalizeNull,
+  getBytesLen: getBytesLen,
+  getRandomDayMils: getRandomDayMils,
+  getQueryParam: getQueryParam,
+  smartMerge: smartMerge
+}
+
+export default index;
 export { regExp, fakeUID, deepClone, appendGlobalStyle, getDeepProperty, isEptVal, removeEptVal, hasProperty, normalizeNull, getBytesLen, getQueryParam, shuffle, getRandomDayMils, smartMerge };

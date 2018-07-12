@@ -130,6 +130,7 @@ export const smartMerge = (target, other) => {
 export default {
   regExp,
   fakeUID,
+  deepClone,
   appendGlobalStyle,
   getDeepProperty,
   isEptVal,
