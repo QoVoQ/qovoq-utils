@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.3
+ * qovoq-utils v0.0.4
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -9,8 +9,19 @@
   (factory((global.QovoqUtils = {})));
 }(this, (function (exports) { 'use strict';
 
+  var regex = {
+    url: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www\.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-]*)?\??(?:[-+=&;%@.\w]*)#?(?:[.!/\\\w]*))?)/g,
+    email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    password: /^(?![0-9]+$)(?![a-zA-Z]+$)[\w\W]{6,18}$/,
+    telephone: /^1[345789]\d{9}$/
+  }
+
   // htmlEle id should start with letter not number
+
   var fakeUIDCounter = 0;
+
+  var regExp = regex;
+
   var fakeUID = function () { return ("u" + (fakeUIDCounter++) + "_" + (Math.floor(
       (1 + Math.random()) * 0x100000000
     ).toString(36))); };
@@ -88,8 +99,8 @@
     if ( url === void 0 ) url = window.location.href;
 
     name = name.replace(/[[]]/g, '\\$&');
-    var regex = new RegExp(("[?&]" + name + "(=([^&#]*)|&|#|$)"));
-    var results = regex.exec(url);
+    var regex$$1 = new RegExp(("[?&]" + name + "(=([^&#]*)|&|#|$)"));
+    var results = regex$$1.exec(url);
     if (!results) {
       return null
     }
@@ -133,6 +144,7 @@
     return target
   };
 
+  exports.regExp = regExp;
   exports.fakeUID = fakeUID;
   exports.deepClone = deepClone;
   exports.appendGlobalStyle = appendGlobalStyle;

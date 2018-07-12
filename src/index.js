@@ -126,3 +126,18 @@ export const smartMerge = (target, other) => {
   })
   return target
 }
+
+export default {
+  regExp,
+  fakeUID,
+  appendGlobalStyle,
+  getDeepProperty,
+  isEptVal,
+  removeEptVal,
+  hasProperty,
+  normalizeNull,
+  getBytesLen,
+  getRandomDayMils,
+  getQueryParam,
+  smartMerge
+}
