@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.6
+ * qovoq-utils v0.0.7
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -136,12 +136,26 @@
   var smartMerge = function (target, other) {
     Object.keys(target).forEach(function (key) {
       if (other[key] !== undefined) {
-        typeof other[key] === 'object'
-          ? smartMerge(target[key], other[key])
-          : (target[key] = other[key]);
+        Array.isArray(other[key])
+          ? (target[key] = deepClone(other[key]))
+          : typeof other[key] === 'object'
+            ? smartMerge(target[key], other[key])
+            : (target[key] = other[key]);
       }
     });
     return target
+  };
+
+  var downloadCanvas = function (filename, canvas, $link) {
+    if (canvas.msToBlob) {
+      var blob = canvas.msToBlob();
+      window.navigator.msSaveBlob(blob, filename);
+      return
+    }
+
+    $link.download = filename;
+    $link.href = canvas.toDataURL('image/png');
+    $link.click();
   };
 
   var index = {
@@ -149,6 +163,7 @@
     fakeUID: fakeUID,
     deepClone: deepClone,
     appendGlobalStyle: appendGlobalStyle,
+    downloadCanvas: downloadCanvas,
     getDeepProperty: getDeepProperty,
     isEptVal: isEptVal,
     removeEptVal: removeEptVal,
@@ -174,6 +189,7 @@
   exports.shuffle = shuffle;
   exports.getRandomDayMils = getRandomDayMils;
   exports.smartMerge = smartMerge;
+  exports.downloadCanvas = downloadCanvas;
   exports.default = index;
 
   Object.defineProperty(exports, '__esModule', { value: true });

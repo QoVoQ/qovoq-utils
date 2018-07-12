@@ -119,9 +119,11 @@ export const getRandomDayMils = (day = 1) =>
 export const smartMerge = (target, other) => {
   Object.keys(target).forEach(key => {
     if (other[key] !== undefined) {
-      typeof other[key] === 'object'
-        ? smartMerge(target[key], other[key])
-        : (target[key] = other[key])
+      Array.isArray(other[key])
+        ? (target[key] = deepClone(other[key]))
+        : typeof other[key] === 'object'
+          ? smartMerge(target[key], other[key])
+          : (target[key] = other[key])
     }
   })
   return target

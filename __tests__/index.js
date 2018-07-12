@@ -184,4 +184,16 @@ describe('Method: smartMerge', () => {
 
     expect(utils.smartMerge(oldObj, newObj)).toEqual(newObj)
   })
+
+  test('Copy Array: empty array', () => {
+    const oldObj = {
+      scores: []
+    }
+
+    const newObj = {
+      scores: [50, 59]
+    }
+
+    expect(utils.smartMerge(oldObj, newObj)).toEqual(newObj)
+  })
 })
