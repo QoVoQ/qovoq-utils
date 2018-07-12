@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.5
+ * qovoq-utils v0.0.6
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -147,6 +147,7 @@
   var index = {
     regExp: regExp,
     fakeUID: fakeUID,
+    deepClone: deepClone,
     appendGlobalStyle: appendGlobalStyle,
     getDeepProperty: getDeepProperty,
     isEptVal: isEptVal,

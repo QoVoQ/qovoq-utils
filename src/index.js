@@ -127,11 +127,24 @@ export const smartMerge = (target, other) => {
   return target
 }
 
+export const downloadCanvas = (filename, canvas, $link) => {
+  if (canvas.msToBlob) {
+    const blob = canvas.msToBlob()
+    window.navigator.msSaveBlob(blob, filename)
+    return
+  }
+
+  $link.download = filename
+  $link.href = canvas.toDataURL('image/png')
+  $link.click()
+}
+
 export default {
   regExp,
   fakeUID,
   deepClone,
   appendGlobalStyle,
+  downloadCanvas,
   getDeepProperty,
   isEptVal,
   removeEptVal,
