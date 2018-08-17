@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.7
+ * qovoq-utils v0.0.8
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -13,7 +13,8 @@
     url: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www\.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-]*)?\??(?:[-+=&;%@.\w]*)#?(?:[.!/\\\w]*))?)/g,
     email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     password: /^(?![0-9]+$)(?![a-zA-Z]+$)[\w\W]{6,18}$/,
-    telephone: /^1[345789]\d{9}$/
+    telephone: /^1[345789]\d{9}$/,
+    moneyFloat: /^\d+(\.\d{0,2})?$/
   }
 
   // htmlEle id should start with letter not number
