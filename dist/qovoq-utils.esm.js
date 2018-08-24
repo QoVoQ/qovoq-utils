@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.8
+ * qovoq-utils v0.0.9
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
