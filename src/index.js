@@ -3,6 +3,10 @@ import regex from './regex'
 
 let fakeUIDCounter = 0
 
+const _pipe = (a, b) => args => b(a(args))
+
+export const pipe = (...ops) => ops.reduce(_pipe)
+
 export const regExp = regex
 
 export const fakeUID = () =>

@@ -1,5 +1,5 @@
 /**
- * qovoq-utils v0.0.9
+ * qovoq-utils v0.0.10
  * https://github.com/QoVoQ/qovoq-utils#readme
  * @license MIT
  */
@@ -8,7 +8,7 @@ var regex = {
   email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   password: /^(?![0-9]+$)(?![a-zA-Z]+$)[\w\W]{6,18}$/,
   telephone: /^1[345789]\d{9}$/,
-  moneyFloat: /^\d+(\.\d{0,2})?$/
+  moneyFloat: /^-?\d+(\.\d{0,2})?$/
 }
 
 // htmlEle id should start with letter not number
